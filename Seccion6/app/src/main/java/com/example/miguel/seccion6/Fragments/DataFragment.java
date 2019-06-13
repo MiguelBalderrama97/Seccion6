@@ -21,6 +21,8 @@ public class DataFragment extends Fragment {
 
     private DataListener callBack;
 
+    private String textToSend;
+
     public DataFragment() {
         // Required empty public constructor
     }
@@ -29,11 +31,11 @@ public class DataFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-//        try {
-//            callBack = (DataListener) context;
-//        } catch () {
-//
-//        }
+        try {
+            callBack = (DataListener) context;
+        } catch (Exception e) {
+            throw new ClassCastException(context.toString() + " should implements DataListener");
+        }
     }
 
     @Override
@@ -41,13 +43,17 @@ public class DataFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_data, container, false);
 
+//        UI ELEMENTS
         etxtText = view.findViewById(R.id.etxtData);
         btnSend = view.findViewById(R.id.btnData);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                RECOVER THE TEXT THAT I WANT TO SEND
+                textToSend = etxtText.getText().toString();
 
+                sendText(textToSend);
             }
         });
 
@@ -55,11 +61,12 @@ public class DataFragment extends Fragment {
     }
 
     private void sendText(String text) {
-
+        callBack.sendData(text);
     }
 
+    //    WITH THIS INTERFACE I AM GOING TO CAN COMMUNICATE THE FRAGMENT AND THE ACTIVITY
     public interface DataListener {
-        void sendData();
+        void sendData(String text);
     }
 
 }
