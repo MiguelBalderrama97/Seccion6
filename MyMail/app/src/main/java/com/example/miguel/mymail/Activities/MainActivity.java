@@ -1,7 +1,9 @@
-package com.example.miguel.mymail;
+package com.example.miguel.mymail.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.miguel.mymail.R;
 
 public class MainActivity extends AppCompatActivity {
 
