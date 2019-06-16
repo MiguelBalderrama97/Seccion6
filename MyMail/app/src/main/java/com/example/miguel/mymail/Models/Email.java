@@ -15,7 +15,7 @@ public class Email {
         this.sSender = sSender;
         this.sMsg = sMsg;
         this.sSubject = sSubject;
-        this.iColor = this.arrColor[(int)Math.random()*6];
+        this.iColor = this.arrColor[(int)(Math.random() * 6)];
     }
 
     public int getiColor() {

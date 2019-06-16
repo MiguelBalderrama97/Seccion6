@@ -47,6 +47,8 @@ public class EmailAdapter extends BaseAdapter {
 
         TextView txtLetter, txtTitle, txtMsg;
 
+        String title, msg;
+
         if(convertView == null){
             LayoutInflater layoutInflater = ((Activity)context).getLayoutInflater();
             convertView = layoutInflater.inflate(layout, parent, false);
@@ -56,10 +58,23 @@ public class EmailAdapter extends BaseAdapter {
         txtMsg = convertView.findViewById(R.id.txtMsgItem);
         txtTitle = convertView.findViewById(R.id.txtTitleItem);
 
-        txtLetter.setText(currentMail.getsSender().charAt(0));
+        title = currentMail.getsSubject();
+        msg = currentMail.getsMsg();
+
+        txtLetter.setText(currentMail.getsSender().charAt(0)+"");
         txtLetter.setBackgroundColor(currentMail.getiColor());
-        txtMsg.setText(currentMail.getsMsg().substring(0,80));
-        txtTitle.setText(currentMail.getsSubject().substring(0,40));
+
+        if(title.length() >= 40){
+            txtTitle.setText(title.substring(0,39)+"...");
+        }else{
+            txtTitle.setText(title);
+        }
+
+        if(msg.length() >= 80){
+            txtMsg.setText(msg.substring(0,79)+"...");
+        }else{
+            txtMsg.setText(msg);
+        }
 
         return convertView;
     }
