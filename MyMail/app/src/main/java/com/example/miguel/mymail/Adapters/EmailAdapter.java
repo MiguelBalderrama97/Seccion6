@@ -19,6 +19,9 @@ public class EmailAdapter extends BaseAdapter {
     private List<Email> emails;
     private int layout;
 
+    private final int MAX_CHARS_MESSAGE = 79;
+    private final int MAX_CHARS_SUBJECT = 39;
+
     public EmailAdapter(Context context, List<Email> emails, int layout) {
         this.context = context;
         this.emails = emails;
@@ -65,13 +68,13 @@ public class EmailAdapter extends BaseAdapter {
         txtLetter.setBackgroundColor(currentMail.getiColor());
 
         if(title.length() >= 40){
-            txtTitle.setText(title.substring(0,39)+"...");
+            txtTitle.setText(title.substring(0,MAX_CHARS_SUBJECT)+"...");
         }else{
             txtTitle.setText(title);
         }
 
         if(msg.length() >= 80){
-            txtMsg.setText(msg.substring(0,79)+"...");
+            txtMsg.setText(msg.substring(0,MAX_CHARS_MESSAGE)+"...");
         }else{
             txtMsg.setText(msg);
         }
