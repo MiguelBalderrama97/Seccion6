@@ -36,4 +36,10 @@ public class DetailsFragment extends Fragment {
         return view;
     }
 
+    public void renderText(String subject, String sender, String msg){
+        txtSubject.setText(subject);
+        txtSender.setText(sender);
+        txtMsg.setText(msg);
+    }
+
 }

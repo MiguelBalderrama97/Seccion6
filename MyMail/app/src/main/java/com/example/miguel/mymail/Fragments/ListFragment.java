@@ -70,10 +70,16 @@ public class ListFragment extends Fragment implements ListView.OnItemClickListen
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        callBack.sendData(position);
+        Email currentMail = emails.get(position);
+
+        String subject = currentMail.getsSubject();
+        String sender = currentMail.getsSender();
+        String message = currentMail.getsMsg();
+
+        callBack.sendData(subject,sender,message);
     }
 
     public interface DataListener {
-        void sendData(int position);
+        void sendData(String subject, String sender, String message);
     }
 }
